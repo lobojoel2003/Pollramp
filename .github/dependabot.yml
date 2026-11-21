@@ -27,6 +27,13 @@ updates:
       test:
         patterns: ['vitest', '@playwright/test', '@axe-core/playwright']
     open-pull-requests-limit: 10
+    ignore:
+      # SvelteKit 3 supports TypeScript ^6; TypeScript 7 (native compiler) is not in its peer range yet.
+      - dependency-name: typescript
+        update-types: ['version-update:semver-major']
+      # @types/node follows the Node.js major the app runs on (22 LTS).
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
   - package-ecosystem: github-actions
     directory: /
     schedule:
