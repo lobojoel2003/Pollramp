@@ -1,0 +1,116 @@
+{
+	"$schema": "../../schema/overlay.schema.json",
+	"kind": "overlay",
+	"id": "us-va",
+	"version": "1.0.0",
+	"title": "Virginia overlay",
+	"jurisdiction": "US-VA",
+	"description": "Adds Virginia's curbside voting checks (Va. Code § 24.2-649) to the federal base, for voters age 65 or older and voters with a disability who vote from their vehicle, and cites Va. Code § 24.2-310 for polling place accessibility.",
+	"license": "CC0-1.0",
+	"extends": { "id": "doj-base", "version": "^1.0.0" },
+	"sources": [
+		{
+			"title": "Code of Virginia § 24.2-310 — Requirements for polling places",
+			"publisher": "Commonwealth of Virginia"
+		},
+		{
+			"title": "Code of Virginia § 24.2-649 — Assistance for certain voters; curbside voting",
+			"publisher": "Commonwealth of Virginia"
+		},
+		{
+			"title": "Polling Place Accessibility Checklist (ELECT-310C)",
+			"publisher": "Virginia Department of Elections",
+			"url": "https://elections.es.virginia.gov/media/formswarehouse/accessibility/ELECT-310C-Accessibility-Checklist.pdf"
+		}
+	],
+	"kit": [
+		{
+			"id": "sign-curbside-voting",
+			"name": "“Curbside voting” sign with instructions",
+			"description": "Tells voters how to call an officer of election: doorbell, phone number, or honk."
+		}
+	],
+	"sections": {
+		"add": [
+			{
+				"after": "dropoff",
+				"section": {
+					"id": "curbside",
+					"title": "Curbside voting",
+					"summary": "Virginia voters age 65 or older and voters with a disability may vote from their vehicle. Check the curbside location as it will be set up.",
+					"items": [
+						{
+							"id": "curbside.location",
+							"type": "yesno",
+							"prompt": "Is there a designated curbside voting spot close to the entrance where a vehicle can pull over safely?",
+							"diagram": "curbside",
+							"pass": { "op": "equals", "value": true },
+							"fix": {
+								"kind": "kit",
+								"summary": "Reserve a space next to the entrance with cones and a curbside voting sign.",
+								"kit": [
+									{ "item": "traffic-cone", "qty": 2 },
+									{ "item": "sign-curbside-voting", "qty": 1 }
+								]
+							},
+							"public": {
+								"label": "Curbside voting",
+								"pass": "Curbside voting is available next to the entrance.",
+								"fixed": "Curbside voting will be set up next to the entrance on election day."
+							},
+							"references": ["Va. Code § 24.2-649"]
+						},
+						{
+							"id": "curbside.sign",
+							"type": "yesno",
+							"prompt": "Is there a sign at the curbside spot explaining how to request curbside voting?",
+							"diagram": "curbside",
+							"pass": { "op": "equals", "value": true },
+							"fix": {
+								"kind": "kit",
+								"summary": "Post a curbside voting sign with the call instructions.",
+								"kit": [{ "item": "sign-curbside-voting", "qty": 1 }]
+							},
+							"references": ["Va. Code § 24.2-649"]
+						},
+						{
+							"id": "curbside.call",
+							"type": "yesno",
+							"prompt": "Can a voter in a vehicle alert an officer of election without leaving the car (doorbell, buzzer or posted phone number)?",
+							"diagram": "doorbell",
+							"pass": { "op": "equals", "value": true },
+							"fix": {
+								"kind": "kit",
+								"summary": "Mount a wireless doorbell button at the curbside spot with the chime at the check-in table.",
+								"kit": [{ "item": "wireless-doorbell", "qty": 1 }]
+							},
+							"references": ["Va. Code § 24.2-649"]
+						},
+						{
+							"id": "curbside.staffed",
+							"type": "yesno",
+							"prompt": "Is an officer of election assigned to watch for curbside voters throughout the day?",
+							"diagram": "curbside",
+							"pass": { "op": "equals", "value": true },
+							"fix": {
+								"kind": "procedure",
+								"summary": "Add a curbside duty to the officer-of-election assignments, with a relief schedule."
+							},
+							"references": ["Va. Code § 24.2-649"]
+						}
+					]
+				}
+			}
+		]
+	},
+	"items": {
+		"patch": {
+			"voting-area.accessible-system": {
+				"addReferences": ["Va. Code § 24.2-310"]
+			},
+			"entrance.unlocked": {
+				"addReferences": ["Va. Code § 24.2-310"]
+			}
+		}
+	}
+}

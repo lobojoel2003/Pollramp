@@ -1,0 +1,159 @@
+{
+	"$schema": "../../schema/overlay.schema.json",
+	"kind": "overlay",
+	"id": "us-ca",
+	"version": "1.0.0",
+	"title": "California overlay",
+	"jurisdiction": "US-CA",
+	"description": "Applies California Building Code Chapter 11B requirements that are stricter than or additional to the 2010 ADA Standards: wider and longer parking spaces, access-aisle markings, tow-away and fine signage, detectable warnings at curb ramps, and a lower maximum for door hardware.",
+	"license": "CC0-1.0",
+	"extends": { "id": "doj-base", "version": "^1.0.0" },
+	"sources": [
+		{
+			"title": "California Building Code, Title 24, Part 2, Chapter 11B — Accessibility to public buildings",
+			"publisher": "California Building Standards Commission"
+		},
+		{
+			"title": "Polling Place Accessibility Guidelines and Survey Checklist",
+			"publisher": "California Secretary of State",
+			"url": "https://elections.cdn.sos.ca.gov/polling-place-accessibility/checklist/appendix-b-complete.pdf"
+		}
+	],
+	"kit": [
+		{
+			"id": "detectable-warning-mat",
+			"name": "Surface-applied detectable warning mat",
+			"description": "Temporary truncated-dome mat across the full width of a curb ramp at the street edge."
+		},
+		{
+			"id": "sign-tow-away",
+			"name": "Portable tow-away notice for accessible spaces"
+		}
+	],
+	"items": {
+		"patch": {
+			"parking.space-width": {
+				"help": "California requires accessible car spaces at least 108 inches (9 feet) wide. Measure from the center of one line to the center of the other.",
+				"pass": { "op": ">=", "value": 108 },
+				"addReferences": ["CBC §11B-502.2"]
+			},
+			"parking.van-combined-width": {
+				"help": "California allows a 144-inch van space with a 60-inch aisle, or a 108-inch space with a 96-inch aisle. Both add up to 204 inches.",
+				"pass": { "op": ">=", "value": 204 },
+				"addReferences": ["CBC §11B-502.2", "CBC §11B-502.3.1"]
+			},
+			"parking.sign-height": {
+				"help": "Measure from the ground to the bottom of the sign: at least 60 inches, or 80 inches where the sign is in a walkway.",
+				"addReferences": ["CBC §11B-502.6"]
+			},
+			"entrance.hardware-height": {
+				"help": "California limits door hardware to 34–44 inches above the floor. Measure to the center of the handle or button.",
+				"pass": { "op": "between", "min": 34, "max": 44 },
+				"addReferences": ["CBC §11B-404.2.7"]
+			},
+			"entrance.opening-force": {
+				"help": "California limits exterior and interior hinged doors to 5 lbf. Hook the gauge at the latch side and pull slowly at a right angle.",
+				"addReferences": ["CBC §11B-404.2.9"]
+			}
+		},
+		"add": [
+			{
+				"section": "parking",
+				"after": "parking.space-width",
+				"item": {
+					"id": "parking.ca-space-length",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How long is the accessible parking space?",
+					"help": "California requires accessible spaces at least 216 inches (18 feet) long.",
+					"diagram": "parking-space-length",
+					"when": [{ "item": "parking.accessible-spaces", "op": ">", "value": 0 }],
+					"pass": { "op": ">=", "value": 216 },
+					"fix": {
+						"kind": "kit",
+						"summary": "Mark a full-length temporary space with cones and tape.",
+						"kit": [
+							{ "item": "traffic-cone", "qty": 4 },
+							{ "item": "marking-tape", "qty": 1 }
+						]
+					},
+					"references": ["CBC §11B-502.2"]
+				}
+			},
+			{
+				"section": "parking",
+				"after": "parking.aisle-width",
+				"item": {
+					"id": "parking.ca-aisle-marking",
+					"type": "yesno",
+					"prompt": "Is each access aisle outlined in blue, hatched, and marked “NO PARKING” in white letters at least 12 inches high?",
+					"diagram": "aisle-marking",
+					"when": [{ "item": "parking.accessible-spaces", "op": ">", "value": 0 }],
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "kit",
+						"summary": "Cone off the aisle and post a “No parking — access aisle” sign for election day; report the missing markings to the facility.",
+						"kit": [
+							{ "item": "traffic-cone", "qty": 2 },
+							{ "item": "sign-no-parking-aisle", "qty": 1 }
+						]
+					},
+					"references": ["CBC §11B-502.3.3"]
+				}
+			},
+			{
+				"section": "parking",
+				"after": "parking.van-sign",
+				"item": {
+					"id": "parking.ca-fine-sign",
+					"type": "yesno",
+					"prompt": "Does each accessible-space sign show the minimum fine (“Minimum Fine $250”)?",
+					"diagram": "sign-height",
+					"when": [{ "item": "parking.signs", "op": "equals", "value": true }],
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Report the missing fine plate to the facility; it is a permanent sign requirement."
+					},
+					"references": ["CBC §11B-502.6.2"]
+				}
+			},
+			{
+				"section": "parking",
+				"after": "parking.ca-fine-sign",
+				"item": {
+					"id": "parking.ca-tow-away",
+					"type": "yesno",
+					"prompt": "Is a tow-away sign posted at each lot entrance or next to the accessible spaces?",
+					"diagram": "sign-height",
+					"when": [{ "item": "parking.accessible-spaces", "op": ">", "value": 0 }],
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "kit",
+						"summary": "Post a portable tow-away notice next to the accessible spaces and report the missing sign to the facility.",
+						"kit": [{ "item": "sign-tow-away", "qty": 1 }]
+					},
+					"references": ["CBC §11B-502.8"]
+				}
+			},
+			{
+				"section": "curb-ramps",
+				"after": "curb-ramps.landing",
+				"item": {
+					"id": "curb-ramps.ca-detectable-warnings",
+					"type": "yesno",
+					"prompt": "Does the curb ramp have a detectable warning surface (truncated domes) across its full width at the street edge?",
+					"diagram": "detectable-warning",
+					"when": [{ "item": "curb-ramps.provided", "op": "equals", "value": true }],
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "kit",
+						"summary": "Tape a surface-applied detectable warning mat across the bottom of the curb ramp.",
+						"kit": [{ "item": "detectable-warning-mat", "qty": 1 }]
+					},
+					"references": ["CBC §11B-247.1.2", "CBC §11B-705"]
+				}
+			}
+		]
+	}
+}

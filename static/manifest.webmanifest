@@ -1,0 +1,24 @@
+{
+	"name": "Pollramp — polling place accessibility",
+	"short_name": "Pollramp",
+	"description": "Walk the route, measure, fix, and publish voter-facing accessibility pages for polling places. Works offline.",
+	"id": "/",
+	"start_url": "/",
+	"scope": "/",
+	"display": "standalone",
+	"orientation": "any",
+	"background_color": "#f6f4ef",
+	"theme_color": "#0b5e55",
+	"lang": "en-US",
+	"categories": ["government", "productivity", "utilities"],
+	"icons": [
+		{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+		{ "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+		{ "src": "/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+		{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+	],
+	"shortcuts": [
+		{ "name": "Add a site", "url": "/sites/new" },
+		{ "name": "Election-day kit", "url": "/kit" }
+	]
+}

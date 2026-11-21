@@ -1,0 +1,92 @@
+{
+	"name": "pollramp",
+	"version": "1.0.0",
+	"description": "Offline-first polling place accessibility surveys: walk the route, measure, fix, and publish voter-facing accessibility pages.",
+	"private": true,
+	"type": "module",
+	"license": "AGPL-3.0-or-later",
+	"author": "Joel Stain Lobo",
+	"homepage": "https://github.com/lobojoel2003/Pollramp#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/lobojoel2003/Pollramp.git"
+	},
+	"bugs": {
+		"url": "https://github.com/lobojoel2003/Pollramp/issues"
+	},
+	"keywords": [
+		"ada",
+		"accessibility",
+		"elections",
+		"polling-place",
+		"survey",
+		"pwa",
+		"offline-first",
+		"sveltekit",
+		"civic-tech"
+	],
+	"engines": {
+		"node": ">=22.12"
+	},
+	"packageManager": "pnpm@10.28.0",
+	"imports": {
+		"#lib": "./src/lib/index.ts",
+		"#lib/*": "./src/lib/*"
+	},
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"start": "node build",
+		"prepare": "svelte-kit sync || echo ''",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write .",
+		"checklists:validate": "node scripts/validate-checklists.js",
+		"test": "pnpm test:unit && pnpm test:e2e",
+		"test:unit": "vitest --run",
+		"test:watch": "vitest",
+		"test:e2e": "playwright test",
+		"db:migrate": "node scripts/migrate.js",
+		"db:seed": "node scripts/seed-demo.js",
+		"user:create": "node scripts/create-user.js",
+		"screenshots": "node scripts/screenshots.js",
+		"icons": "node scripts/render-icons.js",
+		"release:notes": "node scripts/release-notes.js"
+	},
+	"dependencies": {
+		"postgres": "^4.1.1"
+	},
+	"devDependencies": {
+		"@axe-core/playwright": "^4.14.0",
+		"@eslint/js": "^10.0.1",
+		"@fontsource/atkinson-hyperlegible": "^5.3.0",
+		"@playwright/test": "^1.65.1",
+		"@sveltejs/adapter-node": "^6.0.5",
+		"@sveltejs/kit": "^3.4.0",
+		"@sveltejs/vite-plugin-svelte": "^7.3.1",
+		"@types/node": "^22",
+		"@types/topojson-client": "^3.1.5",
+		"@types/topojson-specification": "^1.0.5",
+		"ajv": "^8.20.0",
+		"ajv-formats": "^3.0.1",
+		"eslint": "^10.15.0",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-svelte": "^3.24.1",
+		"globals": "^17.14.0",
+		"idb": "^8.0.4",
+		"maplibre-gl": "^6.19.0",
+		"prettier": "^3.10.1",
+		"prettier-plugin-svelte": "^4.2.0",
+		"svelte": "^5.59.1",
+		"svelte-check": "^4.7.8",
+		"topojson-client": "^3.1.0",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.73.0",
+		"us-atlas": "^3.0.1",
+		"vite": "^8.3.8",
+		"vitest": "^5.1.1",
+		"zod": "^4.6.7"
+	}
+}

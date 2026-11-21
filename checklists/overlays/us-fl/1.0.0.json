@@ -1,0 +1,120 @@
+{
+	"$schema": "../../schema/overlay.schema.json",
+	"kind": "overlay",
+	"id": "us-fl",
+	"version": "1.0.0",
+	"title": "Florida overlay",
+	"jurisdiction": "US-FL",
+	"description": "Applies Florida's accessible parking rules from s. 553.5041, F.S. and the Florida Building Code – Accessibility: 12-foot-wide accessible spaces, blue outlines, the state sign wording, and a 44-inch route from the spaces that does not pass behind parked cars.",
+	"license": "CC0-1.0",
+	"extends": { "id": "doj-base", "version": "^1.0.0" },
+	"sources": [
+		{
+			"title": "Section 553.5041, Florida Statutes — Parking spaces for persons who have disabilities",
+			"publisher": "Florida Legislature"
+		},
+		{
+			"title": "Florida Building Code – Accessibility",
+			"publisher": "Florida Building Commission"
+		},
+		{
+			"title": "Section 101.715, Florida Statutes — Accessibility of polling places for people having a disability",
+			"publisher": "Florida Legislature"
+		},
+		{
+			"title": "Polling Place Accessibility guide (DE Guide 0014)",
+			"publisher": "Florida Department of State, Division of Elections",
+			"url": "https://soe.dos.state.fl.us/pdf/DE-Guide-0014.Polling-Place-Accessibility%20.pdf"
+		}
+	],
+	"kit": [
+		{
+			"id": "sign-fl-permit-only",
+			"name": "Florida “Parking by disabled permit only” sign on a portable stand",
+			"description": "State-required wording and fine amount, International Symbol of Accessibility."
+		}
+	],
+	"items": {
+		"patch": {
+			"parking.space-width": {
+				"help": "Florida requires accessible spaces at least 12 feet (144 inches) wide. Measure from the center of one line to the center of the other.",
+				"pass": { "op": ">=", "value": 144 },
+				"addReferences": ["s. 553.5041, F.S.", "Florida Building Code – Accessibility §502.2"]
+			},
+			"parking.van-combined-width": {
+				"help": "In Florida every accessible space is 12 feet wide with a 5-foot aisle, so a van space and its aisle add up to at least 204 inches.",
+				"pass": { "op": ">=", "value": 204 },
+				"addReferences": ["s. 553.5041, F.S."]
+			},
+			"parking.accessible-spaces": {
+				"fix": {
+					"kind": "kit",
+					"summary": "Create temporary 12-foot accessible spaces closest to the accessible entrance, each with a 5-foot aisle marked by cones and a Florida permit-only sign.",
+					"kit": [
+						{ "item": "traffic-cone", "per": "shortfall", "multiplier": 4 },
+						{ "item": "sign-fl-permit-only", "per": "shortfall" },
+						{ "item": "marking-tape", "qty": 1 }
+					]
+				}
+			}
+		},
+		"add": [
+			{
+				"section": "parking",
+				"after": "parking.space-width",
+				"item": {
+					"id": "parking.fl-blue-outline",
+					"type": "yesno",
+					"prompt": "Is each accessible space prominently outlined in blue paint?",
+					"diagram": "parking-outline",
+					"when": [{ "item": "parking.accessible-spaces", "op": ">", "value": 0 }],
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "kit",
+						"summary": "Outline the space with blue marking tape for election day and report the faded paint to the facility.",
+						"kit": [{ "item": "marking-tape", "qty": 1, "note": "Blue" }]
+					},
+					"references": ["s. 553.5041, F.S."]
+				}
+			},
+			{
+				"section": "parking",
+				"after": "parking.signs",
+				"item": {
+					"id": "parking.fl-sign-wording",
+					"type": "yesno",
+					"prompt": "Does each sign read “PARKING BY DISABLED PERMIT ONLY” and show the fine amount?",
+					"diagram": "parking-outline",
+					"when": [{ "item": "parking.signs", "op": "equals", "value": true }],
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "kit",
+						"summary": "Place a portable Florida permit-only sign at each space with non-compliant signage.",
+						"kit": [{ "item": "sign-fl-permit-only", "qty": 1 }]
+					},
+					"references": ["s. 553.5041, F.S.", "s. 316.1955, F.S."]
+				}
+			},
+			{
+				"section": "parking",
+				"after": "parking.nearest-entrance",
+				"item": {
+					"id": "parking.fl-route-width",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How wide is the route from the accessible spaces to the entrance, at its narrowest?",
+					"help": "Florida requires a route at least 44 inches wide that does not make voters walk or wheel behind parked cars other than their own.",
+					"diagram": "route-width",
+					"when": [{ "item": "parking.accessible-spaces", "op": ">", "value": 0 }],
+					"pass": { "op": ">=", "value": 44 },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Cone off a 44-inch path from the accessible spaces to the walkway so voters do not pass behind parked cars.",
+						"kit": [{ "item": "traffic-cone", "qty": 6 }]
+					},
+					"references": ["s. 553.5041, F.S."]
+				}
+			}
+		]
+	}
+}

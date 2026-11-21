@@ -1,0 +1,1479 @@
+{
+	"$schema": "../../schema/checklist.schema.json",
+	"kind": "base",
+	"id": "doj-base",
+	"version": "1.0.0",
+	"title": "Polling place accessibility checklist (federal base)",
+	"jurisdiction": "US",
+	"description": "Route-ordered survey of a polling place against the 2010 ADA Standards for Accessible Design, following the structure of the U.S. Department of Justice ADA Checklist for Polling Places: parking, drop-off, the route to the entrance, the entrance, the interior route and the voting area. Each failed item carries an election-day fix.",
+	"license": "CC0-1.0",
+	"sources": [
+		{
+			"title": "ADA Checklist for Polling Places",
+			"publisher": "U.S. Department of Justice, Civil Rights Division",
+			"url": "https://www.ada.gov/resources/polling-places-checklist/",
+			"date": "2016-06"
+		},
+		{
+			"title": "2010 ADA Standards for Accessible Design",
+			"publisher": "U.S. Department of Justice",
+			"url": "https://www.ada.gov/law-and-regs/design-standards/2010-stds/"
+		},
+		{
+			"title": "Help America Vote Act of 2002, §301(a)(3) — accessibility of voting systems",
+			"publisher": "U.S. Congress",
+			"url": "https://www.eac.gov/about_the_eac/help_america_vote_act.aspx"
+		}
+	],
+	"kit": [
+		{
+			"id": "threshold-ramp",
+			"name": "Threshold ramp",
+			"description": "Rubber or aluminum mini-ramp for a raised threshold or lip of up to 2 inches. Choose the size that matches the measured rise.",
+			"sizes": ["1/2-inch", "3/4-inch", "1-inch", "1 1/2-inch", "2-inch"]
+		},
+		{
+			"id": "portable-ramp",
+			"name": "Portable ramp",
+			"description": "Folding aluminum ramp with edge protection, at least 36 inches wide, sized for a 1:12 slope (one foot of ramp per inch of rise). Ramps over a 6-inch rise need handrails on both sides.",
+			"sizes": [
+				"3-foot",
+				"4-foot",
+				"5-foot",
+				"6-foot",
+				"7-foot",
+				"8-foot",
+				"10-foot",
+				"12-foot",
+				"16-foot",
+				"20-foot",
+				"24-foot",
+				"30-foot"
+			]
+		},
+		{
+			"id": "traffic-cone",
+			"name": "Traffic cone (28-inch)",
+			"description": "Marks temporary accessible spaces and access aisles, and makes protruding objects detectable by cane."
+		},
+		{
+			"id": "sign-accessible-parking",
+			"name": "Accessible parking sign on a portable stand",
+			"description": "International Symbol of Accessibility, with the bottom of the sign at least 60 inches above the ground."
+		},
+		{
+			"id": "sign-van-accessible",
+			"name": "“Van Accessible” sign",
+			"description": "Mounted under the accessible parking sign at van-accessible spaces."
+		},
+		{
+			"id": "sign-accessible-entrance",
+			"name": "“Accessible entrance” sign with arrow",
+			"description": "Directs voters from inaccessible entrances and along the route to the accessible entrance."
+		},
+		{
+			"id": "sign-accessible-dropoff",
+			"name": "“Accessible drop-off” sign"
+		},
+		{
+			"id": "sign-ring-for-assistance",
+			"name": "“Ring for assistance” sign"
+		},
+		{
+			"id": "sign-no-parking-aisle",
+			"name": "“No parking — access aisle” sign",
+			"description": "Keeps access aisles and curb ramps clear of parked vehicles."
+		},
+		{
+			"id": "wireless-doorbell",
+			"name": "Wireless doorbell",
+			"description": "Battery push-button at the entrance with the chime in the voting room."
+		},
+		{
+			"id": "door-wedge",
+			"name": "Door wedge",
+			"description": "Prop doors open only where fire code allows and with a poll worker assigned to monitor the door."
+		},
+		{
+			"id": "lever-adapter",
+			"name": "Knob-to-lever adapter",
+			"description": "Clamps onto a round knob so the door can be opened without tight grasping or twisting."
+		},
+		{
+			"id": "marking-tape",
+			"name": "Ground marking tape (roll)",
+			"description": "High-visibility tape for temporary space and aisle lines."
+		},
+		{
+			"id": "pathway-mat",
+			"name": "Roll-out pathway mat",
+			"description": "Firm, stable, slip-resistant surface at least 36 inches wide for crossing grass, gravel or mulch."
+		},
+		{
+			"id": "grating-cover",
+			"name": "Rubber mat or cover plate",
+			"description": "Covers gratings and gaps with openings wider than 1/2 inch."
+		},
+		{
+			"id": "anti-slip-tape",
+			"name": "Anti-slip tread tape (roll)"
+		},
+		{
+			"id": "adjustable-table",
+			"name": "Height-adjustable table",
+			"description": "Work surface 28–34 inches high with at least 27 inches of knee clearance."
+		},
+		{
+			"id": "privacy-screen",
+			"name": "Privacy screen for seated voting"
+		},
+		{
+			"id": "folding-chair",
+			"name": "Folding chair"
+		},
+		{
+			"id": "portable-light",
+			"name": "Battery LED work light"
+		},
+		{
+			"id": "magnifier",
+			"name": "Magnifying sheet"
+		},
+		{
+			"id": "pen-grip",
+			"name": "Pen grip"
+		},
+		{
+			"id": "extension-cord",
+			"name": "Extension cord with cord cover",
+			"description": "Run cords along walls; use a cord cover wherever a cord crosses a route."
+		}
+	],
+	"sections": [
+		{
+			"id": "parking",
+			"title": "Parking",
+			"summary": "Start where voters arrive by car. Count spaces, then measure the accessible spaces nearest the accessible entrance.",
+			"gate": "parking.provided",
+			"items": [
+				{
+					"id": "parking.provided",
+					"type": "yesno",
+					"prompt": "Is parking provided for voters at this site?",
+					"help": "Include on-site lots and garages the facility offers to voters. On-street parking alone counts as “no”.",
+					"diagram": "parking-count"
+				},
+				{
+					"id": "parking.total-spaces",
+					"type": "count",
+					"unit": "count",
+					"prompt": "How many parking spaces are in the lot voters will use?",
+					"help": "Count every space, including accessible ones. Pollramp uses this to work out how many accessible spaces are required.",
+					"diagram": "parking-count",
+					"references": ["2010 ADA Standards §208.2"]
+				},
+				{
+					"id": "parking.accessible-spaces",
+					"type": "count",
+					"unit": "count",
+					"prompt": "How many accessible parking spaces are there?",
+					"help": "Count spaces marked with the International Symbol of Accessibility that have an access aisle.",
+					"diagram": "parking-count",
+					"pass": { "op": ">=", "fn": "ada208.accessible", "args": ["parking.total-spaces"] },
+					"fix": {
+						"kind": "kit",
+						"summary": "Create temporary accessible spaces closest to the accessible entrance, each with an access aisle marked by cones.",
+						"steps": [
+							"Pick level spaces on the shortest route to the accessible entrance.",
+							"Combine two standard spaces into one accessible space and aisle.",
+							"Place a portable accessible parking sign at the head of each space."
+						],
+						"kit": [
+							{ "item": "traffic-cone", "per": "shortfall", "multiplier": 4 },
+							{ "item": "sign-accessible-parking", "per": "shortfall" },
+							{ "item": "marking-tape", "qty": 1 }
+						]
+					},
+					"public": {
+						"label": "Accessible parking",
+						"pass": "{value} accessible parking spaces.",
+						"fixed": "Temporary accessible parking spaces will be marked on election day.",
+						"fail": "Accessible parking is limited."
+					},
+					"references": ["2010 ADA Standards §208.2", "2010 ADA Standards §502"]
+				},
+				{
+					"id": "parking.van-spaces",
+					"type": "count",
+					"unit": "count",
+					"prompt": "How many of the accessible spaces are van-accessible?",
+					"help": "A van-accessible space has a wider space or aisle and a “Van Accessible” sign. At least one in every six accessible spaces must be van-accessible.",
+					"diagram": "van-space",
+					"pass": { "op": ">=", "fn": "ada208.van", "args": ["parking.total-spaces"] },
+					"fix": {
+						"kind": "kit",
+						"summary": "Designate a van-accessible space with a 96-inch access aisle marked by cones.",
+						"kit": [
+							{ "item": "traffic-cone", "per": "shortfall", "multiplier": 4 },
+							{ "item": "sign-accessible-parking", "per": "shortfall" },
+							{ "item": "sign-van-accessible", "per": "shortfall" }
+						]
+					},
+					"public": {
+						"label": "Van-accessible parking",
+						"pass": "{value} van-accessible parking spaces.",
+						"fixed": "A van-accessible space will be marked on election day."
+					},
+					"references": ["2010 ADA Standards §208.2.4"]
+				},
+				{
+					"id": "parking.space-width",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How wide is the narrowest accessible car space?",
+					"help": "Measure from the center of one painted line to the center of the other.",
+					"diagram": "parking-space-width",
+					"when": [{ "item": "parking.accessible-spaces", "op": ">", "value": 0 }],
+					"pass": { "op": ">=", "value": 96 },
+					"fix": {
+						"kind": "kit",
+						"summary": "Mark a wider temporary space with cones and tape, or combine two standard spaces.",
+						"kit": [
+							{ "item": "traffic-cone", "qty": 4 },
+							{ "item": "marking-tape", "qty": 1 }
+						]
+					},
+					"references": ["2010 ADA Standards §502.2"]
+				},
+				{
+					"id": "parking.aisle-width",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How wide is the access aisle next to the accessible space?",
+					"help": "The striped area beside the space where a voter unloads a wheelchair. Measure line center to line center.",
+					"diagram": "access-aisle",
+					"when": [{ "item": "parking.accessible-spaces", "op": ">", "value": 0 }],
+					"pass": { "op": ">=", "value": 60 },
+					"fix": {
+						"kind": "kit",
+						"summary": "Block the neighboring space with cones so the aisle is at least 60 inches wide.",
+						"kit": [
+							{ "item": "traffic-cone", "qty": 3 },
+							{ "item": "sign-no-parking-aisle", "qty": 1 }
+						]
+					},
+					"references": ["2010 ADA Standards §502.3.1"]
+				},
+				{
+					"id": "parking.van-combined-width",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How wide are the van space and its access aisle together?",
+					"help": "Measure from the outer line of the van space to the outer line of its aisle. Both allowed layouts (132 in + 60 in, or 96 in + 96 in) add up to 192 inches.",
+					"diagram": "van-space",
+					"when": [{ "item": "parking.van-spaces", "op": ">", "value": 0 }],
+					"pass": { "op": ">=", "value": 192 },
+					"fix": {
+						"kind": "kit",
+						"summary": "Widen the aisle with cones by blocking the neighboring space.",
+						"kit": [{ "item": "traffic-cone", "qty": 3 }]
+					},
+					"references": ["2010 ADA Standards §502.2", "2010 ADA Standards §502.3.1"]
+				},
+				{
+					"id": "parking.van-covered",
+					"type": "yesno",
+					"prompt": "Is the van-accessible space in a garage or under a roof or canopy?",
+					"diagram": "vertical-clearance",
+					"when": [{ "item": "parking.van-spaces", "op": ">", "value": 0 }]
+				},
+				{
+					"id": "parking.van-clearance",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "What is the lowest vertical clearance on the way to and at the van space?",
+					"help": "Measure from the ground to the lowest overhead obstruction: beams, pipes, signs or sprinklers.",
+					"diagram": "vertical-clearance",
+					"when": [{ "item": "parking.van-covered", "op": "equals", "value": true }],
+					"pass": { "op": ">=", "value": 98 },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Designate a temporary van-accessible space in an uncovered part of the lot.",
+						"kit": [
+							{ "item": "traffic-cone", "qty": 4 },
+							{ "item": "sign-accessible-parking", "qty": 1 },
+							{ "item": "sign-van-accessible", "qty": 1 }
+						]
+					},
+					"references": ["2010 ADA Standards §502.5"]
+				},
+				{
+					"id": "parking.surface-slope",
+					"type": "measure",
+					"unit": "percent",
+					"slope": true,
+					"prompt": "What is the steepest slope across the accessible space and aisle?",
+					"help": "Lay a digital level in the space and the aisle, both lengthwise and crosswise, and record the steepest reading.",
+					"diagram": "slope",
+					"when": [{ "item": "parking.accessible-spaces", "op": ">", "value": 0 }],
+					"pass": { "op": "<=", "value": 2.08 },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Set up temporary accessible spaces in a level part of the lot near the accessible entrance.",
+						"kit": [
+							{ "item": "traffic-cone", "qty": 4 },
+							{ "item": "sign-accessible-parking", "qty": 1 }
+						]
+					},
+					"references": ["2010 ADA Standards §502.4"]
+				},
+				{
+					"id": "parking.signs",
+					"type": "yesno",
+					"prompt": "Does every accessible space have a sign with the International Symbol of Accessibility?",
+					"help": "Pavement markings alone are not enough; the sign must be posted at the head of the space.",
+					"diagram": "sign-height",
+					"when": [{ "item": "parking.accessible-spaces", "op": ">", "value": 0 }],
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "kit",
+						"summary": "Place a portable accessible parking sign at the head of each unsigned space.",
+						"kit": [{ "item": "sign-accessible-parking", "qty": 1 }]
+					},
+					"references": ["2010 ADA Standards §502.6"]
+				},
+				{
+					"id": "parking.sign-height",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How high is the bottom of the lowest accessible parking sign?",
+					"help": "Measure from the ground to the bottom edge of the sign so it can be seen over a parked vehicle.",
+					"diagram": "sign-height",
+					"when": [{ "item": "parking.signs", "op": "equals", "value": true }],
+					"pass": { "op": ">=", "value": 60 },
+					"fix": {
+						"kind": "kit",
+						"summary": "Use a portable sign stand that holds the sign at least 60 inches up.",
+						"kit": [{ "item": "sign-accessible-parking", "qty": 1 }]
+					},
+					"references": ["2010 ADA Standards §502.6"]
+				},
+				{
+					"id": "parking.van-sign",
+					"type": "yesno",
+					"prompt": "Do the van-accessible spaces have a “Van Accessible” sign?",
+					"diagram": "sign-height",
+					"when": [{ "item": "parking.van-spaces", "op": ">", "value": 0 }],
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "kit",
+						"summary": "Add a “Van Accessible” sign under the accessible parking sign.",
+						"kit": [{ "item": "sign-van-accessible", "qty": 1 }]
+					},
+					"references": ["2010 ADA Standards §502.6"]
+				},
+				{
+					"id": "parking.nearest-entrance",
+					"type": "yesno",
+					"prompt": "Are the accessible spaces on the shortest accessible route to the accessible entrance?",
+					"diagram": "route-width",
+					"when": [{ "item": "parking.accessible-spaces", "op": ">", "value": 0 }],
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Mark temporary accessible spaces at the point of the lot closest to the accessible entrance.",
+						"kit": [
+							{ "item": "traffic-cone", "qty": 4 },
+							{ "item": "sign-accessible-parking", "qty": 1 }
+						]
+					},
+					"references": ["2010 ADA Standards §208.3.1"]
+				}
+			]
+		},
+		{
+			"id": "dropoff",
+			"title": "Passenger drop-off",
+			"summary": "Check the place where voters are dropped off by car, taxi or paratransit.",
+			"gate": "dropoff.provided",
+			"items": [
+				{
+					"id": "dropoff.provided",
+					"type": "yesno",
+					"prompt": "Is there a passenger drop-off area at this site?",
+					"help": "A curbside loading zone, porte-cochère or marked drop-off lane.",
+					"diagram": "dropoff"
+				},
+				{
+					"id": "dropoff.aisle-width",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How wide is the access aisle beside the drop-off space?",
+					"help": "The aisle runs alongside the vehicle pull-up space, at the same level, so a voter can get out with a wheelchair or walker.",
+					"diagram": "dropoff",
+					"pass": { "op": ">=", "value": 60 },
+					"fix": {
+						"kind": "kit",
+						"summary": "Mark a 60-inch access aisle beside the drop-off space with cones and a sign.",
+						"kit": [
+							{ "item": "traffic-cone", "qty": 4 },
+							{ "item": "sign-accessible-dropoff", "qty": 1 }
+						]
+					},
+					"public": {
+						"label": "Drop-off area",
+						"pass": "Accessible passenger drop-off area.",
+						"fixed": "An accessible drop-off area will be marked on election day."
+					},
+					"references": ["2010 ADA Standards §503.3"]
+				},
+				{
+					"id": "dropoff.aisle-length",
+					"type": "measure",
+					"unit": "ft",
+					"prompt": "How long is the drop-off access aisle?",
+					"help": "Measure along the curb. It must extend the full length of the vehicle pull-up space it serves.",
+					"diagram": "dropoff",
+					"pass": { "op": ">=", "value": 20 },
+					"fix": {
+						"kind": "kit",
+						"summary": "Extend the aisle with cones to at least 20 feet.",
+						"kit": [{ "item": "traffic-cone", "qty": 2 }]
+					},
+					"references": ["2010 ADA Standards §503.3.2"]
+				},
+				{
+					"id": "dropoff.slope",
+					"type": "measure",
+					"unit": "percent",
+					"slope": true,
+					"prompt": "What is the steepest slope of the drop-off space and aisle?",
+					"diagram": "slope",
+					"pass": { "op": "<=", "value": 2.08 },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Move the drop-off point to a level stretch of curb near the accessible entrance.",
+						"kit": [{ "item": "sign-accessible-dropoff", "qty": 1 }]
+					},
+					"references": ["2010 ADA Standards §503.4"]
+				},
+				{
+					"id": "dropoff.level-access",
+					"type": "yesno",
+					"prompt": "Can a voter get from the drop-off aisle to the walkway without a step (curb ramp or level)?",
+					"diagram": "curb-ramp",
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "kit",
+						"summary": "Place a portable ramp sized to the curb height at the drop-off aisle.",
+						"kit": [{ "sizing": "rampForRise", "from": "dropoff.curb-height" }]
+					},
+					"references": ["2010 ADA Standards §503.2", "2010 ADA Standards §406"]
+				},
+				{
+					"id": "dropoff.curb-height",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How high is the curb at the drop-off?",
+					"help": "Measure from the road surface to the top of the curb. Pollramp sizes the portable ramp from this.",
+					"diagram": "level-change",
+					"when": [{ "item": "dropoff.level-access", "op": "equals", "value": false }]
+				}
+			]
+		},
+		{
+			"id": "route",
+			"title": "Route to the entrance",
+			"summary": "Walk from the accessible parking or drop-off to the accessible entrance, measuring the narrowest, steepest and roughest points.",
+			"items": [
+				{
+					"id": "route.level-change",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "What is the largest change in level along the route?",
+					"help": "Find the tallest step, lip, raised paver or heaved sidewalk joint and measure its height. Enter 0 if the route is smooth.",
+					"diagram": "level-change",
+					"pass": { "op": "<=", "value": 0.5 },
+					"fix": {
+						"kind": "kit",
+						"summary": "Ramp over the change in level so the route is step-free.",
+						"kit": [{ "sizing": "rampForRise" }],
+						"structuralIf": {
+							"op": ">",
+							"value": 30,
+							"summary": "A rise over 30 inches needs a ramp with intermediate landings, which is not practical as a temporary fix. Use another route or entrance."
+						}
+					},
+					"public": {
+						"label": "Route to the entrance",
+						"pass": "Step-free route from parking to the entrance.",
+						"fixed": "A portable ramp will provide a step-free route on election day.",
+						"fail": "The route to the entrance has a step."
+					},
+					"references": ["2010 ADA Standards §303", "2010 ADA Standards §402"]
+				},
+				{
+					"id": "route.width",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How wide is the route at its narrowest point?",
+					"help": "Measure the clear walking width between obstructions such as planters, poles, signs and parked bikes.",
+					"diagram": "route-width",
+					"pass": { "op": ">=", "value": 36 },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Move planters, A-frame signs and other objects out of the route, or mark a wider alternate route with signs.",
+						"kit": [{ "item": "sign-accessible-entrance", "qty": 2 }]
+					},
+					"references": ["2010 ADA Standards §403.5.1"]
+				},
+				{
+					"id": "route.surface",
+					"type": "choice",
+					"prompt": "What is the walking surface along the route?",
+					"diagram": "surface",
+					"options": [
+						{ "value": "paved", "label": "Concrete or asphalt", "pass": true },
+						{ "value": "pavers", "label": "Firm pavers or brick, joints flush", "pass": true },
+						{ "value": "loose", "label": "Gravel, grass, mulch or sand", "pass": false },
+						{ "value": "damaged", "label": "Broken or heaved pavement", "pass": false }
+					],
+					"pass": { "op": "in", "values": ["paved", "pavers"] },
+					"fix": {
+						"kind": "kit",
+						"summary": "Lay a roll-out pathway mat over loose or broken sections.",
+						"kit": [{ "item": "pathway-mat", "qty": 1 }]
+					},
+					"public": {
+						"label": "Walking surface",
+						"pass": "Firm, paved walking surface.",
+						"fixed": "A firm pathway mat will cover rough ground on election day."
+					},
+					"references": ["2010 ADA Standards §302.1"]
+				},
+				{
+					"id": "route.running-slope",
+					"type": "measure",
+					"unit": "percent",
+					"slope": true,
+					"prompt": "What is the steepest slope in the direction of travel?",
+					"help": "Anything steeper than 1:20 (5%) is a ramp and must also meet the ramp checks in the next section.",
+					"diagram": "slope",
+					"pass": { "op": "<=", "value": 5 },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Use a gentler alternate route, or survey this segment as a ramp (handrails, landings, edge protection).",
+						"kit": [{ "item": "sign-accessible-entrance", "qty": 2 }]
+					},
+					"references": ["2010 ADA Standards §403.3"]
+				},
+				{
+					"id": "route.cross-slope",
+					"type": "measure",
+					"unit": "percent",
+					"slope": true,
+					"prompt": "What is the steepest cross slope (side to side)?",
+					"diagram": "cross-slope",
+					"pass": { "op": "<=", "value": 2.08 },
+					"fix": {
+						"kind": "structural",
+						"summary": "A steep cross slope cannot be corrected on election day. Use an alternate route if one exists and report it to the facility for repair."
+					},
+					"references": ["2010 ADA Standards §403.3"]
+				},
+				{
+					"id": "route.openings",
+					"type": "yesno",
+					"prompt": "Are there gratings, gaps or grooves in the route wider than 1/2 inch?",
+					"help": "Check storm drains, expansion joints, and the gap where a sidewalk meets a building.",
+					"diagram": "grating",
+					"pass": { "op": "equals", "value": false },
+					"fix": {
+						"kind": "kit",
+						"summary": "Cover the opening with a rubber mat or cover plate secured flat to the ground.",
+						"kit": [{ "item": "grating-cover", "qty": 1 }]
+					},
+					"references": ["2010 ADA Standards §302.3"]
+				},
+				{
+					"id": "route.protruding",
+					"type": "yesno",
+					"prompt": "Do any objects between 27 and 80 inches high stick out more than 4 inches into the route?",
+					"help": "Wall-mounted fire extinguishers, signs, drinking fountains, open windows. A cane cannot detect these.",
+					"diagram": "protruding-object",
+					"pass": { "op": "equals", "value": false },
+					"fix": {
+						"kind": "kit",
+						"summary": "Place a cone under the object so it can be detected by cane, or remove the object for election day.",
+						"kit": [{ "item": "traffic-cone", "qty": 1 }]
+					},
+					"references": ["2010 ADA Standards §307.2"]
+				},
+				{
+					"id": "route.headroom",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "What is the lowest overhead clearance along the route?",
+					"help": "Tree branches, awnings, the underside of stairs. Mark not applicable if nothing is overhead.",
+					"diagram": "headroom",
+					"pass": { "op": ">=", "value": 80 },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Trim branches before election day, or rope off and cone the area under the low clearance.",
+						"kit": [{ "item": "traffic-cone", "qty": 2 }]
+					},
+					"references": ["2010 ADA Standards §307.4"]
+				},
+				{
+					"id": "route.signage",
+					"type": "choice",
+					"prompt": "Are there signs directing voters to the accessible route and entrance?",
+					"diagram": "signage",
+					"options": [
+						{
+							"value": "same",
+							"label": "Not needed — the main route is the accessible route",
+							"pass": true
+						},
+						{ "value": "yes", "label": "Yes, signs are posted", "pass": true },
+						{ "value": "no", "label": "No signs", "pass": false }
+					],
+					"pass": { "op": "in", "values": ["same", "yes"] },
+					"fix": {
+						"kind": "kit",
+						"summary": "Post “Accessible entrance” signs with arrows at the parking area, the main entrance, and each turn.",
+						"kit": [{ "item": "sign-accessible-entrance", "qty": 3 }]
+					},
+					"references": ["2010 ADA Standards §216.6"]
+				}
+			]
+		},
+		{
+			"id": "curb-ramps",
+			"title": "Curb ramps",
+			"summary": "Where the route crosses a curb, check the curb ramp.",
+			"gate": "curb-ramps.present",
+			"items": [
+				{
+					"id": "curb-ramps.present",
+					"type": "yesno",
+					"prompt": "Does the route cross a curb between parking or drop-off and the entrance?",
+					"diagram": "curb-ramp"
+				},
+				{
+					"id": "curb-ramps.provided",
+					"type": "yesno",
+					"prompt": "Is there a curb ramp everywhere the route crosses a curb?",
+					"diagram": "curb-ramp",
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "kit",
+						"summary": "Place a portable ramp sized to the curb height where the route crosses the curb.",
+						"kit": [{ "sizing": "rampForRise", "from": "curb-ramps.curb-height" }]
+					},
+					"public": {
+						"label": "Curb ramps",
+						"pass": "Curb ramps along the route.",
+						"fixed": "A portable curb ramp will be in place on election day."
+					},
+					"references": ["2010 ADA Standards §406"]
+				},
+				{
+					"id": "curb-ramps.curb-height",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How high is the curb where a ramp is missing?",
+					"help": "Measure from the street or lot surface to the top of the curb.",
+					"diagram": "level-change",
+					"when": [{ "item": "curb-ramps.provided", "op": "equals", "value": false }]
+				},
+				{
+					"id": "curb-ramps.slope",
+					"type": "measure",
+					"unit": "percent",
+					"slope": true,
+					"prompt": "What is the running slope of the curb ramp?",
+					"diagram": "curb-ramp",
+					"when": [{ "item": "curb-ramps.provided", "op": "equals", "value": true }],
+					"pass": { "op": "<=", "value": 8.33 },
+					"fix": {
+						"kind": "kit",
+						"summary": "Place a portable ramp with a 1:12 slope over the steep curb ramp.",
+						"kit": [
+							{
+								"item": "portable-ramp",
+								"qty": 1,
+								"note": "Size to the curb height (1 foot per inch of rise)."
+							}
+						]
+					},
+					"references": ["2010 ADA Standards §406.1", "2010 ADA Standards §405.2"]
+				},
+				{
+					"id": "curb-ramps.flare-slope",
+					"type": "measure",
+					"unit": "percent",
+					"slope": true,
+					"prompt": "What is the slope of the curb ramp's side flares?",
+					"help": "Only where pedestrians may walk across the flares.",
+					"diagram": "curb-ramp",
+					"when": [{ "item": "curb-ramps.provided", "op": "equals", "value": true }],
+					"pass": { "op": "<=", "value": 10 },
+					"fix": {
+						"kind": "kit",
+						"summary": "Place cones on the flares so voters approach the ramp straight on.",
+						"kit": [{ "item": "traffic-cone", "qty": 2 }]
+					},
+					"references": ["2010 ADA Standards §406.3"]
+				},
+				{
+					"id": "curb-ramps.landing",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How long is the level landing at the top of the curb ramp?",
+					"diagram": "curb-ramp",
+					"when": [{ "item": "curb-ramps.provided", "op": "equals", "value": true }],
+					"pass": { "op": ">=", "value": 36 },
+					"fix": {
+						"kind": "structural",
+						"summary": "A short top landing cannot be extended on election day. Look for another curb ramp or route."
+					},
+					"references": ["2010 ADA Standards §406.4"]
+				},
+				{
+					"id": "curb-ramps.clear",
+					"type": "yesno",
+					"prompt": "Is the curb ramp kept clear of parked cars and other obstructions?",
+					"diagram": "curb-ramp",
+					"when": [{ "item": "curb-ramps.provided", "op": "equals", "value": true }],
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "kit",
+						"summary": "Cone off and sign the area in front of the curb ramp; ask a poll worker to keep it clear.",
+						"kit": [
+							{ "item": "traffic-cone", "qty": 2 },
+							{ "item": "sign-no-parking-aisle", "qty": 1 }
+						]
+					},
+					"references": ["2010 ADA Standards §406"]
+				}
+			]
+		},
+		{
+			"id": "ramps",
+			"title": "Ramps",
+			"summary": "Any part of the route steeper than 1:20 (5%) is a ramp. Measure the steepest run.",
+			"gate": "ramps.present",
+			"items": [
+				{
+					"id": "ramps.present",
+					"type": "yesno",
+					"prompt": "Is there a ramp on the route (any part steeper than 1:20, or 5%)?",
+					"diagram": "ramp"
+				},
+				{
+					"id": "ramps.slope",
+					"type": "measure",
+					"unit": "percent",
+					"slope": true,
+					"prompt": "What is the running slope of the steepest ramp run?",
+					"help": "1:12 equals 8.33%. Measure in several spots and record the steepest.",
+					"diagram": "ramp",
+					"pass": { "op": "<=", "value": 8.33 },
+					"fix": {
+						"kind": "structural",
+						"summary": "A ramp steeper than 1:12 cannot be corrected on election day. Use another entrance or a compliant portable ramp system."
+					},
+					"public": {
+						"label": "Ramp",
+						"pass": "A ramp with a gentle slope leads to the entrance.",
+						"fail": "The ramp to the entrance is steep."
+					},
+					"references": ["2010 ADA Standards §405.2"]
+				},
+				{
+					"id": "ramps.cross-slope",
+					"type": "measure",
+					"unit": "percent",
+					"slope": true,
+					"prompt": "What is the steepest cross slope of the ramp?",
+					"diagram": "cross-slope",
+					"pass": { "op": "<=", "value": 2.08 },
+					"fix": {
+						"kind": "structural",
+						"summary": "Report the ramp's cross slope to the facility for repair; look for another route."
+					},
+					"references": ["2010 ADA Standards §405.3"]
+				},
+				{
+					"id": "ramps.width",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How wide is the ramp between handrails?",
+					"diagram": "ramp",
+					"pass": { "op": ">=", "value": 36 },
+					"fix": {
+						"kind": "structural",
+						"summary": "A narrow ramp cannot be widened on election day. Use another entrance."
+					},
+					"references": ["2010 ADA Standards §405.5"]
+				},
+				{
+					"id": "ramps.rise",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "What is the rise of the longest single ramp run?",
+					"help": "Measure the height difference between the landings at the bottom and top of one run.",
+					"diagram": "ramp",
+					"pass": { "op": "<=", "value": 30 },
+					"fix": {
+						"kind": "structural",
+						"summary": "Ramp runs rising more than 30 inches need intermediate landings. Use another entrance."
+					},
+					"references": ["2010 ADA Standards §405.6"]
+				},
+				{
+					"id": "ramps.landings",
+					"type": "yesno",
+					"prompt": "Is there a level landing at least 60 inches long at the top and bottom of every run?",
+					"diagram": "ramp",
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Keep landings clear of furniture, mats and signs; if a landing is simply too short, treat it as a structural barrier.",
+						"steps": [
+							"Remove anything stored on the landing.",
+							"Make sure the door swing does not cross the landing."
+						]
+					},
+					"references": ["2010 ADA Standards §405.7"]
+				},
+				{
+					"id": "ramps.handrails",
+					"type": "yesno",
+					"prompt": "Are there handrails on both sides of every run that rises more than 6 inches?",
+					"diagram": "handrail",
+					"when": [{ "item": "ramps.rise", "op": ">", "value": 6 }],
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "structural",
+						"summary": "Missing handrails need a permanent fix. Consider another entrance or a portable ramp system with rails."
+					},
+					"references": ["2010 ADA Standards §405.8"]
+				},
+				{
+					"id": "ramps.handrail-height",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How high is the top of the handrail?",
+					"help": "Measure vertically from the ramp surface to the top of the gripping surface.",
+					"diagram": "handrail",
+					"when": [{ "item": "ramps.handrails", "op": "equals", "value": true }],
+					"pass": { "op": "between", "min": 34, "max": 38 },
+					"fix": {
+						"kind": "structural",
+						"summary": "Report the handrail height to the facility; it cannot be adjusted on election day."
+					},
+					"references": ["2010 ADA Standards §505.4"]
+				},
+				{
+					"id": "ramps.edge-protection",
+					"type": "yesno",
+					"prompt": "Do the ramp and landings have edge protection (curb, rail or wall) wherever there is a drop-off at the side?",
+					"diagram": "ramp",
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "structural",
+						"summary": "Edge protection must be added permanently. Use another entrance if the drop-off is dangerous."
+					},
+					"references": ["2010 ADA Standards §405.9"]
+				},
+				{
+					"id": "ramps.surface",
+					"type": "yesno",
+					"prompt": "Is the ramp surface firm, slip-resistant and free of debris, ice and loose mats?",
+					"diagram": "ramp",
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "kit",
+						"summary": "Sweep the ramp on election morning and apply anti-slip tread tape.",
+						"kit": [{ "item": "anti-slip-tape", "qty": 1 }]
+					},
+					"references": ["2010 ADA Standards §302.1", "2010 ADA Standards §405.4"]
+				}
+			]
+		},
+		{
+			"id": "entrance",
+			"title": "Accessible entrance",
+			"summary": "Measure the door voters with disabilities will use. Hold the door open at 90° for width measurements.",
+			"items": [
+				{
+					"id": "entrance.is-main",
+					"type": "yesno",
+					"prompt": "Is the accessible entrance the main entrance that other voters use?",
+					"diagram": "signage",
+					"public": {
+						"label": "Accessible entrance",
+						"pass": "The main entrance is accessible."
+					}
+				},
+				{
+					"id": "entrance.signs",
+					"type": "yesno",
+					"prompt": "Is there a sign at the main entrance pointing to the accessible entrance?",
+					"diagram": "signage",
+					"when": [{ "item": "entrance.is-main", "op": "equals", "value": false }],
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "kit",
+						"summary": "Post an “Accessible entrance” sign with an arrow at the main entrance.",
+						"kit": [{ "item": "sign-accessible-entrance", "qty": 1 }]
+					},
+					"references": ["2010 ADA Standards §216.6"]
+				},
+				{
+					"id": "entrance.unlocked",
+					"type": "yesno",
+					"prompt": "Will the accessible entrance be unlocked and usable the entire time the polls are open?",
+					"help": "Ask the facility contact. A locked side door with no way to call for help is a common election-day barrier.",
+					"diagram": "doorbell",
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "kit",
+						"summary": "Arrange to unlock the door for voting hours, and install a doorbell so voters can call a poll worker.",
+						"kit": [
+							{ "item": "wireless-doorbell", "qty": 1 },
+							{ "item": "sign-ring-for-assistance", "qty": 1 }
+						]
+					},
+					"public": {
+						"label": "Entrance hours",
+						"pass": "The accessible entrance is open while the polls are open.",
+						"fixed": "Ring the doorbell at the accessible entrance and a poll worker will help."
+					},
+					"references": ["28 CFR §35.133 (maintenance of accessible features)"]
+				},
+				{
+					"id": "entrance.clear-width",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "What is the clear opening width of the entrance door?",
+					"help": "Open the door to 90°. Measure from the face of the door to the stop on the opposite jamb. For double doors, measure the active leaf.",
+					"diagram": "door-width",
+					"pass": { "op": ">=", "value": 32 },
+					"fix": {
+						"kind": "procedure",
+						"summary": "If it is a pair of doors, prop both leaves open with a poll worker monitoring; otherwise use another entrance at least 32 inches wide.",
+						"kit": [{ "item": "door-wedge", "qty": 2 }],
+						"structuralIf": {
+							"op": "<",
+							"value": 28,
+							"summary": "A doorway this narrow cannot be made usable on election day. Use another entrance."
+						}
+					},
+					"public": {
+						"label": "Entrance door",
+						"pass": "The entrance door is at least 32 inches wide.",
+						"fixed": "Both entrance doors will be propped open on election day."
+					},
+					"references": ["2010 ADA Standards §404.2.3"]
+				},
+				{
+					"id": "entrance.threshold",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How high is the threshold at the entrance door?",
+					"help": "Measure from the floor or walk surface to the top of the threshold on the higher side. Enter 0 if there is none.",
+					"diagram": "threshold",
+					"pass": { "op": "<=", "value": 0.5 },
+					"fix": {
+						"kind": "kit",
+						"summary": "Place a threshold ramp matched to the measured height, and sign the accessible entrance.",
+						"kit": [{ "sizing": "rampForRise" }, { "item": "sign-accessible-entrance", "qty": 1 }],
+						"structuralIf": {
+							"op": ">",
+							"value": 30,
+							"summary": "A change in level this large is a set of steps. Use another entrance."
+						}
+					},
+					"public": {
+						"label": "Entrance threshold",
+						"pass": "No raised threshold at the entrance.",
+						"fixed": "A threshold ramp will be in place at the entrance on election day."
+					},
+					"references": ["2010 ADA Standards §404.2.5", "2010 ADA Standards §303"]
+				},
+				{
+					"id": "entrance.hardware",
+					"type": "choice",
+					"prompt": "What kind of handle or opener is on the entrance door?",
+					"help": "Hardware must work with one closed fist: no tight grasping, pinching or twisting.",
+					"diagram": "door-hardware",
+					"options": [
+						{ "value": "automatic", "label": "Automatic or push-button opener", "pass": true },
+						{ "value": "lever", "label": "Lever handle", "pass": true },
+						{ "value": "push-pull", "label": "Push bar or loop pull", "pass": true },
+						{ "value": "knob", "label": "Round knob", "pass": false },
+						{ "value": "thumb-latch", "label": "Thumb latch or pinch-grip pull", "pass": false }
+					],
+					"pass": { "op": "in", "values": ["automatic", "lever", "push-pull"] },
+					"fix": {
+						"kind": "kit",
+						"summary": "Fit a knob-to-lever adapter, or prop the door open with a poll worker monitoring.",
+						"kit": [{ "item": "lever-adapter", "qty": 1 }]
+					},
+					"public": {
+						"label": "Door handle",
+						"pass": "The door has a lever, push bar or automatic opener.",
+						"fixed": "The door handle will be adapted or the door attended on election day."
+					},
+					"references": ["2010 ADA Standards §404.2.7", "2010 ADA Standards §309.4"]
+				},
+				{
+					"id": "entrance.hardware-height",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How high is the door handle or opener button?",
+					"help": "Measure from the floor to the center of the handle or button.",
+					"diagram": "door-hardware",
+					"pass": { "op": "between", "min": 34, "max": 48 },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Prop the door open with a poll worker monitoring.",
+						"kit": [{ "item": "door-wedge", "qty": 1 }]
+					},
+					"references": ["2010 ADA Standards §404.2.7"]
+				},
+				{
+					"id": "entrance.opening-force",
+					"type": "measure",
+					"unit": "lbf",
+					"prompt": "How much force does it take to open the entrance door?",
+					"help": "Hook the gauge at the latch side and pull (or push) slowly at a right angle until the door starts to move. The 2010 Standards set 5 lbf for interior doors and leave exterior doors to local codes; Pollramp uses 5 lbf as the practical target because heavy doors are one of the most common election-day barriers.",
+					"diagram": "door-force",
+					"when": [{ "item": "entrance.hardware", "op": "not-equals", "value": "automatic" }],
+					"pass": { "op": "<=", "value": 5 },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Adjust the door closer before election day, or prop the door open with a poll worker monitoring.",
+						"kit": [{ "item": "door-wedge", "qty": 1 }]
+					},
+					"public": {
+						"label": "Door opening",
+						"pass": "The entrance door opens with light force.",
+						"fixed": "The entrance door will be held open or attended on election day."
+					},
+					"references": ["2010 ADA Standards §404.2.9"]
+				},
+				{
+					"id": "entrance.closing-speed",
+					"type": "measure",
+					"unit": "seconds",
+					"prompt": "How long does the door take to close from fully open (90°) to about 12° from closed?",
+					"help": "Open the door to 90°, let go, and time it.",
+					"diagram": "door-closer",
+					"pass": { "op": ">=", "value": 5 },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Ask the facility to slow the closer, or prop the door open with a poll worker monitoring.",
+						"kit": [{ "item": "door-wedge", "qty": 1 }]
+					},
+					"references": ["2010 ADA Standards §404.2.8.1"]
+				},
+				{
+					"id": "entrance.maneuvering",
+					"type": "yesno",
+					"prompt": "On the pull side, is there a clear, level space at least 18 inches wide beside the latch edge of the door?",
+					"help": "A wheelchair user needs room beside the latch to pull the door open without the door hitting their footrests.",
+					"diagram": "maneuvering-clearance",
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Move planters, trash cans or furniture away from the latch side; otherwise prop the door open with a poll worker monitoring.",
+						"kit": [{ "item": "door-wedge", "qty": 1 }]
+					},
+					"references": ["2010 ADA Standards §404.2.4"]
+				},
+				{
+					"id": "entrance.vestibule",
+					"type": "choice",
+					"prompt": "If there are two doors in a row (a vestibule), is the space between them at least 48 inches plus the width of any door swinging into it?",
+					"diagram": "vestibule",
+					"options": [
+						{ "value": "none", "label": "There is only one door", "pass": true },
+						{ "value": "yes", "label": "Yes, there is enough space", "pass": true },
+						{ "value": "no", "label": "No, the space is too small", "pass": false }
+					],
+					"pass": { "op": "in", "values": ["none", "yes"] },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Prop the outer door open with a poll worker monitoring so voters deal with one door at a time.",
+						"kit": [{ "item": "door-wedge", "qty": 1 }]
+					},
+					"references": ["2010 ADA Standards §404.2.6"]
+				}
+			]
+		},
+		{
+			"id": "interior",
+			"title": "Interior route",
+			"summary": "Walk from the entrance to the voting room. Check hallways, inner doors and the way between floors.",
+			"items": [
+				{
+					"id": "interior.width",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How wide is the hallway at its narrowest point between the entrance and the voting room?",
+					"diagram": "route-width",
+					"pass": { "op": ">=", "value": 36 },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Move tables, trash cans, coat racks and stored items out of the hallway for election day."
+					},
+					"public": {
+						"label": "Hallways",
+						"pass": "Hallways to the voting room are at least 36 inches wide."
+					},
+					"references": ["2010 ADA Standards §403.5.1"]
+				},
+				{
+					"id": "interior.level-change",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "What is the largest change in level inside, between the entrance and the voting room?",
+					"help": "Raised thresholds, floor transitions, a single step. Enter 0 if the route is level.",
+					"diagram": "level-change",
+					"pass": { "op": "<=", "value": 0.5 },
+					"fix": {
+						"kind": "kit",
+						"summary": "Ramp over the change in level.",
+						"kit": [{ "sizing": "rampForRise" }],
+						"structuralIf": {
+							"op": ">",
+							"value": 30,
+							"summary": "A rise this large needs an elevator or lift. Move the voting area to the entrance level."
+						}
+					},
+					"references": ["2010 ADA Standards §303"]
+				},
+				{
+					"id": "interior.protruding",
+					"type": "yesno",
+					"prompt": "Do any objects between 27 and 80 inches high stick out more than 4 inches into the hallway?",
+					"diagram": "protruding-object",
+					"pass": { "op": "equals", "value": false },
+					"fix": {
+						"kind": "kit",
+						"summary": "Place a cone or chair under the object so a cane can detect it.",
+						"kit": [{ "item": "traffic-cone", "qty": 1 }]
+					},
+					"references": ["2010 ADA Standards §307.2"]
+				},
+				{
+					"id": "interior.door-width",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "What is the clear width of the narrowest interior door on the route?",
+					"help": "Measure with the door open 90°. Mark not applicable if there are no interior doors.",
+					"diagram": "door-width",
+					"pass": { "op": ">=", "value": 32 },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Prop interior doors fully open (or open both leaves) for election day.",
+						"kit": [{ "item": "door-wedge", "qty": 2 }],
+						"structuralIf": {
+							"op": "<",
+							"value": 28,
+							"summary": "This doorway is too narrow to use. Choose a different voting room or route."
+						}
+					},
+					"references": ["2010 ADA Standards §404.2.3"]
+				},
+				{
+					"id": "interior.door-force",
+					"type": "measure",
+					"unit": "lbf",
+					"prompt": "How much force does it take to open the heaviest interior door on the route?",
+					"diagram": "door-force",
+					"pass": { "op": "<=", "value": 5 },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Prop interior doors open for the day (fire doors only with magnetic hold-opens or a monitor).",
+						"kit": [{ "item": "door-wedge", "qty": 1 }]
+					},
+					"references": ["2010 ADA Standards §404.2.9"]
+				},
+				{
+					"id": "interior.same-floor",
+					"type": "yesno",
+					"prompt": "Is the voting room on the same floor as the accessible entrance?",
+					"diagram": "elevator",
+					"public": {
+						"label": "Voting floor",
+						"pass": "Voting is on the same floor as the accessible entrance."
+					}
+				},
+				{
+					"id": "interior.elevator",
+					"type": "yesno",
+					"prompt": "Is there an elevator or platform lift voters can use without help?",
+					"diagram": "elevator",
+					"when": [{ "item": "interior.same-floor", "op": "equals", "value": false }],
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Move the voting area to the floor of the accessible entrance."
+					},
+					"public": {
+						"label": "Elevator",
+						"pass": "An elevator serves the voting floor.",
+						"fixed": "Voting will be moved to the entrance level on election day."
+					},
+					"references": ["2010 ADA Standards §206.2.3", "2010 ADA Standards §407"]
+				},
+				{
+					"id": "interior.elevator-door",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How wide is the elevator door opening?",
+					"diagram": "elevator",
+					"when": [{ "item": "interior.elevator", "op": "equals", "value": true }],
+					"pass": { "op": ">=", "value": 36 },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Move the voting area to the floor of the accessible entrance."
+					},
+					"references": ["2010 ADA Standards §407.3.6"]
+				},
+				{
+					"id": "interior.elevator-controls",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How high is the highest elevator call or floor button a voter must press?",
+					"diagram": "reach-range",
+					"when": [{ "item": "interior.elevator", "op": "equals", "value": true }],
+					"pass": { "op": "<=", "value": 48 },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Station a poll worker at the elevator to operate it for voters who ask."
+					},
+					"references": ["2010 ADA Standards §407.2.1.1", "2010 ADA Standards §308"]
+				},
+				{
+					"id": "interior.elevator-keyless",
+					"type": "yesno",
+					"prompt": "Does the elevator work without a key or staff override?",
+					"diagram": "elevator",
+					"when": [{ "item": "interior.elevator", "op": "equals", "value": true }],
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Get the key from the facility and keep a poll worker with it at the elevator all day."
+					},
+					"references": ["28 CFR §35.133 (maintenance of accessible features)"]
+				}
+			]
+		},
+		{
+			"id": "voting-area",
+			"title": "Voting area",
+			"summary": "Check the room as it will be set up on election day: check-in, aisles, booths and the accessible voting system.",
+			"items": [
+				{
+					"id": "voting-area.aisle-width",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How wide is the narrowest aisle between check-in, booths and the ballot scanner?",
+					"help": "Measure with tables and booths where they will be on election day, including where the line will form.",
+					"diagram": "route-width",
+					"pass": { "op": ">=", "value": 36 },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Re-arrange tables and booths to keep 36-inch aisles. Include the layout in the poll-worker setup sheet."
+					},
+					"public": {
+						"label": "Inside the voting room",
+						"pass": "Aisles in the voting room are wide enough for a wheelchair."
+					},
+					"references": ["2010 ADA Standards §403.5.1"]
+				},
+				{
+					"id": "voting-area.turning-space",
+					"type": "yesno",
+					"prompt": "Is there a clear space at least 60 inches across for a wheelchair to turn, including at check-in and at the accessible booth?",
+					"diagram": "turning-space",
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Move booths and tables to open a 5-foot turning circle at check-in and at the accessible booth."
+					},
+					"references": ["2010 ADA Standards §304.3"]
+				},
+				{
+					"id": "voting-area.check-in-height",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How high is the check-in table where voters sign?",
+					"diagram": "table-height",
+					"pass": { "op": "between", "min": 28, "max": 34 },
+					"fix": {
+						"kind": "kit",
+						"summary": "Use a height-adjustable table for check-in, or provide a clipboard at a lower table.",
+						"kit": [{ "item": "adjustable-table", "qty": 1 }]
+					},
+					"references": ["2010 ADA Standards §902.3", "2010 ADA Standards §904.4"]
+				},
+				{
+					"id": "voting-area.accessible-system",
+					"type": "yesno",
+					"prompt": "Will an accessible voting system (with audio, large print and tactile controls) be set up, powered and tested before polls open?",
+					"diagram": "voting-station",
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "kit",
+						"summary": "Add the accessible voting system to the delivery list, with power, and test it during setup.",
+						"kit": [{ "item": "extension-cord", "qty": 1 }]
+					},
+					"public": {
+						"label": "Accessible voting system",
+						"pass": "An accessible voting system with audio, large print and tactile controls."
+					},
+					"references": ["Help America Vote Act §301(a)(3)"]
+				},
+				{
+					"id": "voting-area.booth-clear-space",
+					"type": "yesno",
+					"prompt": "Is there a clear floor space at least 30 by 48 inches in front of the accessible voting system?",
+					"diagram": "clear-floor-space",
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Remove the chair and move nearby booths to clear a 30-by-48-inch space."
+					},
+					"references": ["2010 ADA Standards §305.3"]
+				},
+				{
+					"id": "voting-area.booth-height",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How high is the table surface of the accessible voting station?",
+					"diagram": "table-height",
+					"pass": { "op": "between", "min": 28, "max": 34 },
+					"fix": {
+						"kind": "kit",
+						"summary": "Use a height-adjustable table for the accessible voting station.",
+						"kit": [{ "item": "adjustable-table", "qty": 1 }]
+					},
+					"references": ["2010 ADA Standards §902.3"]
+				},
+				{
+					"id": "voting-area.knee-clearance",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How much knee clearance is under the accessible voting station?",
+					"help": "Measure from the floor to the underside of the table apron.",
+					"diagram": "table-height",
+					"pass": { "op": ">=", "value": 27 },
+					"fix": {
+						"kind": "kit",
+						"summary": "Use a table with at least 27 inches of knee clearance.",
+						"kit": [{ "item": "adjustable-table", "qty": 1 }]
+					},
+					"references": ["2010 ADA Standards §306.3"]
+				},
+				{
+					"id": "voting-area.reach",
+					"type": "measure",
+					"unit": "in",
+					"prompt": "How high is the highest control or ballot slot a voter must reach (including the scanner)?",
+					"diagram": "reach-range",
+					"pass": { "op": "between", "min": 15, "max": 48 },
+					"fix": {
+						"kind": "procedure",
+						"summary": "Lower the scanner or place it on a table so its slot is within 15–48 inches."
+					},
+					"references": ["2010 ADA Standards §308.2", "2010 ADA Standards §309.3"]
+				},
+				{
+					"id": "voting-area.privacy",
+					"type": "yesno",
+					"prompt": "Can a seated voter mark a ballot privately, out of view of others?",
+					"diagram": "voting-station",
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "kit",
+						"summary": "Turn the accessible station toward a wall and add a privacy screen.",
+						"kit": [{ "item": "privacy-screen", "qty": 1 }]
+					},
+					"references": ["Help America Vote Act §301(a)(3)(A)"]
+				},
+				{
+					"id": "voting-area.cords",
+					"type": "yesno",
+					"prompt": "Are power cords kept out of the route, or covered with a cord cover?",
+					"diagram": "voting-station",
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "kit",
+						"summary": "Run cords along walls and use a cord cover where a cord must cross a route.",
+						"kit": [{ "item": "extension-cord", "qty": 1 }]
+					},
+					"references": ["2010 ADA Standards §303"]
+				},
+				{
+					"id": "voting-area.seating",
+					"type": "yesno",
+					"prompt": "Are chairs available for voters who cannot stand in line?",
+					"diagram": "seating",
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "kit",
+						"summary": "Bring folding chairs and place them along the line.",
+						"kit": [{ "item": "folding-chair", "qty": 4 }]
+					},
+					"public": {
+						"label": "Seating",
+						"pass": "Chairs for voters who need to sit while waiting.",
+						"fixed": "Chairs will be available for voters who need to sit while waiting."
+					},
+					"references": ["DOJ ADA Checklist for Polling Places — voting area"]
+				},
+				{
+					"id": "voting-area.lighting",
+					"type": "yesno",
+					"prompt": "Is the lighting bright enough to read a ballot at every booth?",
+					"diagram": "lighting",
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "kit",
+						"summary": "Bring battery work lights for dim booths.",
+						"kit": [{ "item": "portable-light", "qty": 2 }]
+					},
+					"references": ["DOJ ADA Checklist for Polling Places — voting area"]
+				},
+				{
+					"id": "voting-area.aids",
+					"type": "yesno",
+					"prompt": "Are magnifiers and pen grips available at the booths?",
+					"diagram": "voting-station",
+					"pass": { "op": "equals", "value": true },
+					"fix": {
+						"kind": "kit",
+						"summary": "Add magnifying sheets and pen grips to the supply bag.",
+						"kit": [
+							{ "item": "magnifier", "qty": 2 },
+							{ "item": "pen-grip", "qty": 4 }
+						]
+					},
+					"public": {
+						"label": "Voting aids",
+						"pass": "Magnifiers and pen grips at the voting booths.",
+						"fixed": "Magnifiers and pen grips will be at the voting booths."
+					},
+					"references": ["DOJ ADA Checklist for Polling Places — voting area"]
+				}
+			]
+		}
+	]
+}

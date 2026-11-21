@@ -1,0 +1,297 @@
+/*
+ * Shared, global styles for the measurement diagrams in src/lib/diagrams/svg.
+ *
+ * Diagrams are plain SVG that use these classes (never fill="var(...)" attributes), so the
+ * whole set re-themes from the custom properties below. Class order matters: a "-fill" class
+ * listed after a stroke class wins on `fill`, so `class="dg-ink dg-fill"` gives an ink outline
+ * around a surface fill.
+ */
+
+:root {
+	--diagram-bg: #eef5f3;
+	--diagram-ink: #14213d;
+	--diagram-surface: #d5e2df;
+	--diagram-surface-2: #b8cbc7;
+	--diagram-accent: #c2410c;
+	--diagram-muted: #66768a;
+	--diagram-brand: #0b5e55;
+	--diagram-ok: #15803d;
+	--diagram-bad: #b91c1c;
+	--diagram-wash-opacity: 0.16;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme='light']) {
+		--diagram-bg: #10201e;
+		--diagram-ink: #e6edf3;
+		--diagram-surface: #2a3c39;
+		--diagram-surface-2: #3c524e;
+		--diagram-accent: #ff8a50;
+		--diagram-muted: #93a4b8;
+		--diagram-brand: #5fd3c2;
+		--diagram-ok: #4ade80;
+		--diagram-bad: #f87171;
+		--diagram-wash-opacity: 0.22;
+	}
+}
+
+:root[data-theme='dark'] {
+	--diagram-bg: #10201e;
+	--diagram-ink: #e6edf3;
+	--diagram-surface: #2a3c39;
+	--diagram-surface-2: #3c524e;
+	--diagram-accent: #ff8a50;
+	--diagram-muted: #93a4b8;
+	--diagram-brand: #5fd3c2;
+	--diagram-ok: #4ade80;
+	--diagram-bad: #f87171;
+	--diagram-wash-opacity: 0.22;
+}
+
+figure.diagram {
+	margin: 0;
+	overflow: hidden;
+	background: var(--diagram-bg);
+	border-radius: 12px;
+	color: var(--diagram-ink);
+}
+
+figure.diagram svg {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+/* ---- backgrounds and fills ---------------------------------------------------------- */
+
+.dg-bg {
+	fill: var(--diagram-bg);
+}
+
+/* Outlines: ink 2px, no fill. */
+.dg-ink {
+	fill: none;
+	stroke: var(--diagram-ink);
+	stroke-width: 2px;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+/* Secondary lines, hatching, ghosted positions: 1.25px. */
+.dg-muted {
+	fill: none;
+	stroke: var(--diagram-muted);
+	stroke-width: 1.25px;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+/* Brand-coloured lines: paint stripes, sign borders. */
+.dg-brand {
+	fill: none;
+	stroke: var(--diagram-brand);
+	stroke-width: 2px;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.dg-brand-thin {
+	fill: none;
+	stroke: var(--diagram-brand);
+	stroke-width: 1.5px;
+	stroke-linecap: round;
+}
+
+/* The thing to measure: dimension lines, arrows. */
+.dg-accent {
+	fill: none;
+	stroke: var(--diagram-accent);
+	stroke-width: 2.5px;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.dg-accent-thin {
+	fill: none;
+	stroke: var(--diagram-accent);
+	stroke-width: 1.25px;
+	stroke-linecap: round;
+}
+
+.dg-fill {
+	fill: var(--diagram-surface);
+}
+
+.dg-fill-2 {
+	fill: var(--diagram-surface-2);
+}
+
+.dg-fill-bg {
+	fill: var(--diagram-bg);
+}
+
+.dg-ink-fill {
+	fill: var(--diagram-ink);
+}
+
+.dg-muted-fill {
+	fill: var(--diagram-muted);
+}
+
+.dg-brand-fill {
+	fill: var(--diagram-brand);
+}
+
+.dg-accent-fill {
+	fill: var(--diagram-accent);
+}
+
+/* Translucent accent area: a zone or band that is being checked. */
+.dg-wash {
+	fill: var(--diagram-accent);
+	fill-opacity: var(--diagram-wash-opacity);
+}
+
+/* See-through object drawn over others, e.g. a privacy screen. */
+.dg-ghost {
+	fill: var(--diagram-surface-2);
+	fill-opacity: 0.45;
+}
+
+.dg-dash {
+	stroke-dasharray: 5 4;
+}
+
+.dg-dot {
+	stroke-dasharray: 1.5 4;
+}
+
+/* People and pictograms: ink strokes with round ends; width is set per shape. */
+.dg-figure {
+	fill: none;
+	stroke: var(--diagram-ink);
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+/* ---- pass / fail marks ---------------------------------------------------------------- */
+
+.dg-ok-fill {
+	fill: var(--diagram-ok);
+}
+
+.dg-bad-fill {
+	fill: var(--diagram-bad);
+}
+
+.dg-mark-glyph {
+	fill: none;
+	stroke: var(--diagram-bg);
+	stroke-width: 3px;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+/* ---- International Symbol of Accessibility ------------------------------------------- */
+
+.dg-isa {
+	--dg-isa-ink: var(--diagram-brand);
+}
+
+.dg-isa.dg-isa-tile {
+	--dg-isa-ink: var(--diagram-bg);
+}
+
+.dg-isa-bg {
+	fill: var(--diagram-brand);
+}
+
+.dg-isa-stroke {
+	fill: none;
+	stroke: var(--dg-isa-ink);
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.dg-isa-fill {
+	fill: var(--dg-isa-ink);
+}
+
+/* ---- text ------------------------------------------------------------------------------- */
+
+.dg-label,
+.dg-label-sm,
+.dg-label-muted,
+.dg-label-accent,
+.dg-label-brand,
+.dg-label-on-brand {
+	font-family: inherit;
+	font-size: 13px;
+	font-weight: 600;
+	fill: var(--diagram-ink);
+}
+
+.dg-label-sm {
+	font-size: 12px;
+}
+
+.dg-label-muted {
+	font-size: 12px;
+	fill: var(--diagram-muted);
+}
+
+.dg-label-brand {
+	font-weight: 700;
+	fill: var(--diagram-brand);
+}
+
+/* White-on-blue sign text. */
+.dg-label-on-brand {
+	font-size: 12px;
+	font-weight: 700;
+	fill: var(--diagram-bg);
+}
+
+/* The measured value. The halo lets it sit on top of a dimension line or hatching. */
+.dg-label-accent {
+	font-size: 14px;
+	font-weight: 700;
+	fill: var(--diagram-accent);
+	paint-order: stroke;
+	stroke: var(--diagram-bg);
+	stroke-width: 4px;
+	stroke-linejoin: round;
+}
+
+/* Digit readout on a tool display (digital level, gauge). */
+.dg-readout {
+	font-family: inherit;
+	font-size: 12px;
+	font-weight: 700;
+	fill: var(--diagram-accent);
+}
+
+/* Large painted lettering on pavement, e.g. NO PARKING. */
+.dg-paint {
+	font-family: inherit;
+	font-size: 18px;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	fill: var(--diagram-brand);
+}
+
+/* Background-coloured halo for ink labels placed over busy areas. */
+.dg-halo {
+	paint-order: stroke;
+	stroke: var(--diagram-bg);
+	stroke-width: 4px;
+	stroke-linejoin: round;
+}
+
+/* Halo in the surface colour, for labels that sit on a filled surface. */
+.dg-halo-surface {
+	paint-order: stroke;
+	stroke: var(--diagram-surface);
+	stroke-width: 4px;
+	stroke-linejoin: round;
+}

@@ -1,0 +1,9 @@
+# Voter-facing pages are public; the office app and API are not for crawlers.
+User-agent: *
+Allow: /p
+Disallow: /api/
+Disallow: /sites
+Disallow: /surveys
+Disallow: /settings
+Disallow: /kit
+Disallow: /import
