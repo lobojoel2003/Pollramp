@@ -356,7 +356,8 @@ tests/e2e/                  Playwright end-to-end and accessibility tests
   `X.Y.Z`, `X.Y`, `X` and `latest` with provenance and SBOM, and creates the GitHub release with
   notes from the changelog, the server bundle, the checklist data zip and checksums.
 
-To cut a release, move the `Unreleased` notes under a new version heading in `CHANGELOG.md`, then:
+To cut a release, move the `Unreleased` notes under a new version heading in `CHANGELOG.md`, then
+either push a tag:
 
 ```bash
 npm version 1.1.0 -m "Release v%s"
@@ -365,6 +366,9 @@ npm version 1.1.0 -m "Release v%s"
 ```bash
 git push origin main --follow-tags
 ```
+
+or bump `package.json` on `main` and run the **Release** workflow from the Actions tab with the
+tag (for example `v1.1.0`); it creates the tag on `main` and does the rest.
 
 ## Security and privacy
 

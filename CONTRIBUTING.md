@@ -52,8 +52,9 @@ The end-to-end suite resets the database in `TEST_DATABASE_URL` (default
 
 - Work on a branch and open a pull request against `main`; CI must be green.
 - Maintainers release by moving the Unreleased notes under a new version heading, running
-  `npm version <x.y.z> -m "Release v%s"`, and pushing with `--follow-tags`. The release workflow
-  does the rest.
+  `npm version <x.y.z> -m "Release v%s"`, and pushing with `--follow-tags`. Alternatively, bump the
+  version on `main` and start the **Release** workflow from the Actions tab with the tag. The
+  workflow tests, publishes the Docker image and creates the GitHub release.
 
 By contributing you agree that your code is licensed under the AGPL-3.0-or-later and that
 checklist data you contribute is dedicated to the public domain under CC0 1.0.

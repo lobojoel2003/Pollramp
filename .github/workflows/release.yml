@@ -1,14 +1,17 @@
 name: Release
 
-# Push a tag like v1.2.3 (matching package.json) to build, test, publish the Docker image to
-# GHCR and create the GitHub release with notes from CHANGELOG.md.
+# Release Pollramp: build, test, publish the Docker image to GHCR and create the GitHub release
+# with notes from CHANGELOG.md. Start it either way:
+#   - push a tag like v1.2.3 that matches package.json, or
+#   - run this workflow from the Actions tab with the version tag; if the tag does not exist yet it
+#     is created on the selected branch (attributed to whoever started the run).
 on:
   push:
     tags: ['v[0-9]+.[0-9]+.[0-9]+']
   workflow_dispatch:
     inputs:
       tag:
-        description: Existing tag to (re)release, e.g. v1.0.0
+        description: Version tag to release, e.g. v1.0.0 (created from the selected branch if missing)
         required: true
 
 concurrency:
@@ -28,6 +31,8 @@ jobs:
     name: Verify and test
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      contents: write # only used to create the tag for manual (workflow_dispatch) releases
     outputs:
       version: ${{ steps.version.outputs.version }}
     services:
@@ -47,7 +52,26 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: ${{ env.TAG }}
+          fetch-depth: 0
+      - name: Use the existing tag, or create it for a manual release
+        run: |
+          if ! [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Tag must look like v1.2.3, got $TAG"
+            exit 1
+          fi
+          if git ls-remote --exit-code --tags origin "refs/tags/$TAG" >/dev/null; then
+            git fetch --force origin "refs/tags/$TAG:refs/tags/$TAG"
+            git checkout --quiet "$TAG"
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            git config user.name "${{ github.actor }}"
+            git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
+            git tag -a "$TAG" -m "Pollramp $TAG" -m "Released from ${{ github.ref_name }} by the Release workflow."
+            git push origin "refs/tags/$TAG"
+            echo "Created $TAG at $(git rev-parse --short HEAD)"
+          else
+            echo "::error::Tag $TAG not found"
+            exit 1
+          fi
       - name: Check the tag matches package.json
         id: version
         run: |
