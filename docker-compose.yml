@@ -1,0 +1,49 @@
+# Pollramp with PostgreSQL.
+#
+#   cp .env.example .env    # then edit the passwords and ORIGIN
+#   docker compose up -d
+#
+# Open http://localhost:3000 and sign in with POLLRAMP_ADMIN_EMAIL / POLLRAMP_ADMIN_PASSWORD
+# (or leave those empty and create the first administrator in the browser).
+name: pollramp
+
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: pollramp
+      POSTGRES_USER: pollramp
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U pollramp -d pollramp']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    image: ghcr.io/lobojoel2003/pollramp:${POLLRAMP_TAG:-latest}
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - '${POLLRAMP_PORT:-3000}:3000'
+    environment:
+      DATABASE_URL: postgres://pollramp:${POSTGRES_PASSWORD:-change-me}@db:5432/pollramp
+      ORIGIN: ${ORIGIN:-http://localhost:3000}
+      POLLRAMP_SECURE_COOKIES: ${POLLRAMP_SECURE_COOKIES:-}
+      POLLRAMP_OFFICE_NAME: ${POLLRAMP_OFFICE_NAME:-Election Office}
+      POLLRAMP_DEFAULT_STATE: ${POLLRAMP_DEFAULT_STATE:-}
+      POLLRAMP_MAP_STYLE_URL: ${POLLRAMP_MAP_STYLE_URL:-https://tiles.openfreemap.org/styles/liberty}
+      POLLRAMP_MAP_LAT: ${POLLRAMP_MAP_LAT:-39.83}
+      POLLRAMP_MAP_LNG: ${POLLRAMP_MAP_LNG:--98.58}
+      POLLRAMP_MAP_ZOOM: ${POLLRAMP_MAP_ZOOM:-3.5}
+      POLLRAMP_ADMIN_EMAIL: ${POLLRAMP_ADMIN_EMAIL:-}
+      POLLRAMP_ADMIN_PASSWORD: ${POLLRAMP_ADMIN_PASSWORD:-}
+
+volumes:
+  pgdata:

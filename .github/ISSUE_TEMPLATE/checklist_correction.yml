@@ -1,0 +1,24 @@
+name: Checklist correction or new state overlay
+description: A threshold, citation, question or fix in the checklist data is wrong or missing.
+labels: [checklist]
+body:
+  - type: input
+    id: item
+    attributes:
+      label: Checklist and item id
+      description: For example doj-base@1.0.0 · entrance.threshold, or "new overlay for Texas".
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What should change?
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source
+      description: Link or citation for the rule (statute, building code section, state checklist page).
+    validations:
+      required: true

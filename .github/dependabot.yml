@@ -1,0 +1,37 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      svelte:
+        patterns:
+          [
+            'svelte',
+            'svelte-check',
+            '@sveltejs/*',
+            'prettier-plugin-svelte',
+            'eslint-plugin-svelte'
+          ]
+      lint:
+        patterns:
+          [
+            'eslint',
+            '@eslint/*',
+            'typescript-eslint',
+            'eslint-config-prettier',
+            'prettier',
+            'globals'
+          ]
+      test:
+        patterns: ['vitest', '@playwright/test', '@axe-core/playwright']
+    open-pull-requests-limit: 10
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly

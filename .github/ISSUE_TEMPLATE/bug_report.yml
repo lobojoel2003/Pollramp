@@ -1,0 +1,35 @@
+name: Bug report
+description: Something in Pollramp is broken or behaves unexpectedly.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open a survey at …
+        2. Enter …
+        3. See …
+  - type: input
+    id: version
+    attributes:
+      label: Pollramp version and build
+      description: Shown at the bottom of every page and in Settings → About (e.g. 1.0.0 · build 42).
+  - type: input
+    id: device
+    attributes:
+      label: Device and browser
+      placeholder: iPad, Safari 19 / Android phone, Chrome
+  - type: checkboxes
+    id: offline
+    attributes:
+      label: Connection
+      options:
+        - label: This happened while offline
